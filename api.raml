@@ -1,0 +1,57 @@
+#%RAML 1.0
+---
+title: Numbers API
+baseUri: http://127.0.0.1:5858/
+version: v1
+
+/numbers
+  type:
+    collection:
+      exampleCollection: |
+        [
+          {
+            'text': '364 is the total number of gifts received in the song "The Twelve Days of Christmas".', 
+            'number': 364, 
+            'found': True, 
+            'type': 'trivia', 
+            'primes': {}
+          }
+          {
+            'text': '722 is an unremarkable number.', 
+            'number': 722, 
+            'found': False, 
+            'type': 'trivia', 
+            'primes': {}
+          }
+          {
+            'text': "733 is a number for which we're missing a fact (submit one to numbersapi at google mail!).", 
+            'number': 733, 
+            'found': False, 
+            'type': 'trivia', 
+            'primes': {}
+          }
+        ]
+      exampleItem: |
+        {
+          'text': '364 is the total number of gifts received in the song "The Twelve Days of Christmas".', 
+          'number': 364, 
+          'found': True, 
+          'type': 'trivia', 
+          'primes': {}
+        }
+      ]  
+  get:
+    description: Получить json коллекцию по числам от 50 до 1000
+  post:
+    description: Обновить в БД простые числа от 2 до 1010
+  /{number}:
+    type:
+      collection-item:
+        exampleItem: |
+          {
+            'text': '364 is the total number of gifts received in the song "The Twelve Days of Christmas".', 
+            'number': 364, 
+            'found': True, 
+            'type': 'trivia', 
+            'primes': {}
+          }

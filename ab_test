@@ -1,0 +1,106 @@
+ab -c 100 -n 500 http://127.0.0.1:5858/numbers/65
+This is ApacheBench, Version 2.3 <$Revision: 1706008 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 127.0.0.1 (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Finished 500 requests
+
+
+Server Software:        Python/3.6
+Server Hostname:        127.0.0.1
+Server Port:            5858
+
+Document Path:          /numbers/65
+Document Length:        147 bytes
+
+Concurrency Level:      100
+Time taken for tests:   3.010 seconds
+Complete requests:      500
+Failed requests:        229
+   (Connect: 0, Receive: 0, Length: 229, Exceptions: 0)
+Total transferred:      153622 bytes
+HTML transferred:       77622 bytes
+Requests per second:    166.13 [#/sec] (mean)
+Time per request:       601.923 [ms] (mean)
+Time per request:       6.019 [ms] (mean, across all concurrent requests)
+Transfer rate:          49.85 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   1.7      0       6
+Processing:   408  545  71.8    541     742
+Waiting:      407  539  67.8    537     731
+Total:        408  546  72.4    541     742
+
+Percentage of the requests served within a certain time (ms)
+  50%    541
+  66%    570
+  75%    591
+  80%    603
+  90%    648
+  95%    683
+  98%    704
+  99%    713
+ 100%    742 (longest request)
+
+
+---------------------------------------------------------------------------------------
+
+ab -c 10 -n 500 http://127.0.0.1:5858/numbers/65
+This is ApacheBench, Version 2.3 <$Revision: 1706008 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 127.0.0.1 (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Finished 500 requests
+
+
+Server Software:        Python/3.6
+Server Hostname:        127.0.0.1
+Server Port:            5858
+
+Document Path:          /numbers/65
+Document Length:        299 bytes
+
+Concurrency Level:      10
+Time taken for tests:   21.147 seconds
+Complete requests:      500
+Failed requests:        253
+   (Connect: 0, Receive: 0, Length: 253, Exceptions: 0)
+Total transferred:      220946 bytes
+HTML transferred:       144946 bytes
+Requests per second:    23.64 [#/sec] (mean)
+Time per request:       422.950 [ms] (mean)
+Time per request:       42.295 [ms] (mean, across all concurrent requests)
+Transfer rate:          10.20 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.3      0       2
+Processing:   385  421  22.0    417     543
+Waiting:      385  420  21.2    416     541
+Total:        386  421  22.1    417     544
+
+Percentage of the requests served within a certain time (ms)
+  50%    417
+  66%    425
+  75%    429
+  80%    431
+  90%    440
+  95%    457
+  98%    513
+  99%    520
+ 100%    544 (longest request)
+
+
