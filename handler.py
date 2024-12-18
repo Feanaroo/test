@@ -19,7 +19,7 @@ class Handler():
         async with aiohttp.ClientSession(loop=self.loop) as session:
             tasks = [self.download_json_coroutine(session, number, self.url) for number in numbers]
             await asyncio.gather(*tasks)
-            #работа с БД ведётся отдельно от запросов к API, чтобы не блокировать event loop
+            # работа с БД ведётся отдельно от запросов к API, чтобы не блокировать event loop
             if self.method == 'POST':
                 db.Result.upload(self.output) 
             if self.method == 'GET':
