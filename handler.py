@@ -3,6 +3,7 @@ import db
 import json
 import aiohttp
 import asyncio
+import xml.etree.ElementTree as ET
 
 DAYS_AGO = 2
 CLOSEST_NUMBERS_COUNT = 2
@@ -34,5 +35,14 @@ class Handler():
             async with session.get(url) as response:
                 json_str = await response.content.read()
                 output = json.loads(json_str)
+                self.output.append(output)
+                return await response.release()
+
+    async def download_xml_coroutine(self, session, number, url):
+        url = str(url) + str(number) + "?xml"
+        with async_timeout.timeout(20):
+            async with session.get(url) as response:
+                xml_str = await response.content.read()
+                output = ET.fromstring(xml_str)
                 self.output.append(output)
                 return await response.release()
