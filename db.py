@@ -15,6 +15,9 @@ Base = declarative_base()
 
 
 class Result(Base):
+    """
+    Result class represents a record in the 'results' table.
+    """
     __tablename__ = 'results'
     id = Column(Integer, primary_key=True)
     number = Column(Integer, nullable=False)
@@ -23,6 +26,11 @@ class Result(Base):
 
     @staticmethod
     def upload(results):
+        """
+        Upload the given results to the database.
+
+        :param results: A list of dictionaries containing 'number' and 'text' keys.
+        """
         current_time = datetime.datetime.now().strftime('%y-%m-%d')
         delete_query = Result.__table__.delete().where(Result.ins_date > current_time)
         engine.execute(delete_query)
@@ -32,15 +40,32 @@ class Result(Base):
 
     @staticmethod
     def get_closest(number, days_ago, numbers_count):
+        """
+        Get the closest numbers to the given number from the database.
+
+        :param number: The reference number.
+        :param days_ago: The number of days ago to consider.
+        :param numbers_count: The number of closest numbers to retrieve.
+        :return: A list of Result objects.
+        """
         date_from = (datetime.datetime.now() - datetime.timedelta(days=days_ago)).strftime('%y-%m-%d')
         rows = session.query(Result).filter(Result.ins_date > date_from).order_by(func.abs(Result.number - number)).limit((days_ago+1)*numbers_count*2).all()
         return rows    
 
 class ResultViewer:
+    """
+    ResultViewer class to format the results for output.
+    """
     def __init__(self, rows=None):
         self.rows = rows if rows is not None else []
 
     def output_json(self, numbers_count):
+        """
+        Format the results as a JSON-compatible dictionary.
+
+        :param numbers_count: The number of results to include for each date.
+        :return: A dictionary with dates as keys and dictionaries of number-text pairs as values.
+        """
         output = {}
         for item in self.rows:
             key = item.ins_date.strftime('%y%m%d')

@@ -22,12 +22,22 @@ def get_primes():
     return lst
 
 async def update(request):
+    """
+    Handle the POST request to update the database with prime numbers.
+
+    :param request: The HTTP request object.
+    """
     numbers = get_primes()
     handler = Handler(API_URL, asyncio.get_event_loop(), request.method) 
     await handler.handle(numbers)
     raise web.HTTPOk()
 
 async def numbers(request):
+    """
+    Handle the GET request to fetch trivia about numbers.
+
+    :param request: The HTTP request object.
+    """
     number = request.match_info.get('number')
     if number is not None and (not number.isdigit() or int(number) < 50 or int(number) > 1000):
         raise web.HTTPBadRequest()
